@@ -1,0 +1,38 @@
+.hero {
+    background-color: #00c385;
+    color: white;
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 70vw;
+}
+
+.intro {
+    width: 70%;
+    padding: 10px 0px 20px 50px;
+}
+
+.intro h1 {
+    font-size: 60px;
+    margin: 0;
+}
+
+.intro p {
+    font-size: 20px;
+}
+
+.hero-img {
+    width: 30%;
+    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-img img {
+    width: 60%;
+    height: auto;
+}
