@@ -1,0 +1,22 @@
+.product-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-grid .title {
+    max-width: 70vw;
+    margin-left: 14.5%; 
+    display: flex;
+    justify-content: left;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 70vw;
+    margin: 0 auto 30px auto;
+    gap: 11px;
+    justify-content: space-evenly;
+}

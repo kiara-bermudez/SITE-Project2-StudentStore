@@ -1,0 +1,26 @@
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content:center; 
+}
+
+.product-detail .media{
+    max-width: 70vw;
+    margin: auto;
+}
+
+.product-detail .info-area {
+    max-width: 70vw;
+    margin: auto;
+    background-color: white;
+}
+
+.product-detail .product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content:center; 
+}
+
+.product-detail h1 {
+    text-align: center;
+}

@@ -16,16 +16,18 @@ export default function App() {
   const [isOpen, setIsOpen] = React.useState(false); // boolean value representing whether or not the Sidebar.jsx is in the open or closed state.
   const [shoppingCart, setShoppingCart] = React.useState([]); // store state for the active user's shopping cart (items they want to purchase and the quantity of each item)
   const [checkoutForm, setCheckoutForm] = React.useState(null); // user's information that will be sent to the API when they checkout
+  const [searchText, setSearchText] = React.useState(""); // text being typed into the search bar
+
 
   React.useEffect(() => {
-    console.log("start");
     getProducts();
-    console.log("end", products);
+    setIsFetching(false);
   }, []);
 
   // API call to get the products for the store
   function getProducts() {
     // Make Get request to API
+    setIsFetching(true);
     axios.get("https://codepath-store-api.herokuapp.com/store")
     .then(function (response) {
       const productData = response.data.products;
@@ -34,17 +36,118 @@ export default function App() {
     .catch(function (error) {
       console.log(error);
       setError(error);
-    })
+    });
   };
 
+  function getSearchedItems(text) {
+    setIsFetching(true);
+    axios.get("https://codepath-store-api.herokuapp.com/store")
+    .then(function (response) {
+      let productData = response.data.products;
+      productData = productData.filter(product => product.name.includes(text));
+      console.log("productdata", productData);
+      setProducts(productData);
+    })
+    .catch(function (error) {
+      console.log(error);
+      setError(error);
+    });
+  };
+
+  function getCategoryItem(category) {
+    setIsFetching(true);
+    axios.get("https://codepath-store-api.herokuapp.com/store")
+    .then(function (response) {
+      let productData = response.data.products;
+      productData = productData.filter(product => product.category == category);
+      console.log("productdata", productData);
+      setProducts(productData);
+    })
+    .catch(function (error) {
+      console.log(error);
+      setError(error);
+    });  
+  }
+
+  {/* It should toggle the open/closed state of the Sidebar */}
+  function handleOnToggle() {
+    setIsOpen(!isOpen);
+  }
+
+  console.log("shoppingCart", shoppingCart);
+  function handleAddItemToCart(productId) {
+    let containsItem = false;
+
+    const newItem = {
+      itemId: productId,
+      quantity: 1
+    }
+
+    if (shoppingCart.length != 0) {
+      containsItem = shoppingCart.some(item => (item.itemId==productId));
+      if (containsItem) {
+        console.log("new state");
+        const newState = shoppingCart.map((item) => {
+        if (item.itemId == productId) {
+          oldQuantity=item.quantity;
+          console.log("old quantity", item.quantity);
+          return {...item, quantity:++item.quantity};
+        }
+        return item;
+      })
+        setShoppingCart(newState);
+      } else {
+        console.log("add new item");
+        setShoppingCart([...shoppingCart, newItem]);
+      }
+    } else {
+      console.log("create new list");
+      setShoppingCart([newItem]);
+    }
+
+    
+
+
+  }
+
+  function handleRemoveItemFromCart(productId) {
+    let containsItem = shoppingCart.some(item => (item.itemId==productId));
+    let removeItem = false;
+
+    if (containsItem) {
+      let newState = shoppingCart.map((item) => {
+        if (item.itemId == productId) {
+          if (item.quantity-1 == 0) {
+            removeItem = true;
+            return item;
+          }
+          return {...item, quantity:--item.quantity};
+        }
+        return item;
+      })
+
+      if (removeItem) {
+        console.log("remove item");
+        newState = newState.filter(item => item.itemId != productId);
+      }
+
+      setShoppingCart(newState);
+    }
+  }
+
+  
+
+  let [showDescription, setShowDescription] = React.useState(false); // boolean that tells whether a product's description is visible
 
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Routes>
-            <Route path="/" element={<><Navbar /><Home products={products}/><Sidebar /></>}/>
-            <Route path="/products/:productId" element={<><Navbar /><Sidebar /><ProductDetail /></>}/>
+            <Route path="/" element={<><Navbar /><Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/><Sidebar /></>}/>
+
+            <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} isFetching={isFetching} setIsFetching={setIsFetching} error={error} setError={setError} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription}/><Sidebar /></>}/>
+
             <Route path="*" element={<><Navbar /><Sidebar /><NotFound /></>}/>
           </Routes>
           

@@ -10,11 +10,11 @@ Selling merchandise in the modern era requires digital solutions. For this proje
 
 #### Core Features
 
-- [ ] Displays the following sections: header, banner, search, product grid, about, contact, and footer.
-- [ ] On initial page load, display the products at the [GET /store endpoint](https://codepath-store-api.herokuapp.com/store).
-- [ ] User can click on the categories (Clothing, food, etc) to filter the product grid by type.
-- [ ] User can search for products.
-- [ ] User can click on a product in the grid to view additional product details. Navigation is via a React Router.
+- [X] Displays the following sections: header, banner, search, product grid, about, contact, and footer.
+- [X] On initial page load, display the products at the [GET /store endpoint](https://codepath-store-api.herokuapp.com/store).
+- [X] User can click on the categories (Clothing, food, etc) to filter the product grid by type.
+- [X] User can search for products.
+- [X] User can click on a product in the grid to view additional product details. Navigation is via a React Router.
 - [ ] User can click to expand the shopping cart in the left navigation.
 - [ ] User can click the '+' button on a product cart to increment that product in the shopping cart.
 - [ ] User can click the '-' button on a product cart to increment that product in the shopping cart.
@@ -51,31 +51,31 @@ The following specifications were met on the Express backend and the React front
     - [X] `isOpen` - a boolean value representing whether or not the `Sidebar.jsx` is in the open or closed state.
     - [X] `shoppingCart` - should store state for the active user's shopping cart (items they want to purchase and the quantity of each item).
       - [X] Use whatever data type works best here, but make sure the format the `shoppingCart` as an array before passing it to other components.
-      - [ ] When passed down to other components as a prop, it should formatted as an array of objects.
-      - [ ] Each object in the array should have two fields:
-        - [ ] The `itemId` field should store the `id` of the item being purchased.
-        - [ ] The `quantity` field should store a number representing how many of that item the user is purchasing.
+      - [X] When passed down to other components as a prop, it should formatted as an array of objects.
+      - [X] Each object in the array should have two fields:
+        - [X] The `itemId` field should store the `id` of the item being purchased.
+        - [X] The `quantity` field should store a number representing how many of that item the user is purchasing.
     - [X] `checkoutForm` - the user's information that will be sent to the API when they checkout.
   - [X] Leverage the `useEffect` hook to ensure that when the `App.jsx` component is mounted to the screen...
     - [X] It should make a `GET` request to the API's `/store` endpoint with the `axios.get` method.
     - [X] When the request completes successfully, it should store the `products` returned by the response in state.
     - [X] If the request does not complete successfully, or there are no `products` found in the response,
             it should create an error message and store it in the `error` state variable.
-  - [ ] The `App.jsx` component should define handler functions to be passed as props to the `Home` and `ProductDetail` components.
-    - [ ] Define as many as are needed.
-    - [ ] At minimum, **create these five handlers**:
-      - [ ] The **`handleOnToggle`** function. When called...
+  - [X] The `App.jsx` component should define handler functions to be passed as props to the `Home` and `ProductDetail` components.
+    - [X] Define as many as are needed.
+    - [X] At minimum, **create these five handlers**:
+      - [X] The **`handleOnToggle`** function. When called...
         - [ ] It should toggle the open/closed state of the `Sidebar`.
-      - [ ] The **`handleAddItemToCart`** function. When called...
-        - [ ] It should accept a single argument - `productId`
-        - [ ] It should add that product to the `shoppingCart` if it doesn't exist, and set its quantity to `1`.
-        - [ ] If it does exist, it should increase the quantity by `1`.
+      - [X] The **`handleAddItemToCart`** function. When called...
+        - [X] It should accept a single argument - `productId`
+        - [X] It should add that product to the `shoppingCart` if it doesn't exist, and set its quantity to `1`.
+        - [X] If it does exist, it should increase the quantity by `1`.
         - [ ] It should add the price of the product to the total price of the `shoppingCart`.
-      - [ ] The **`handleRemoveItemFromCart`** function. When called...
-        - [ ] It should accept a single argument - `productId`
-        - [ ] It should decrease the quantity of the item in the `shoppingCart` by `1`, but only if it already exists.
-        - [ ] If it doesn't exist, the function should do nothing.
-        - [ ] If the new quantity is `0`, it should remove the item from the `shoppingCart`
+      - [X] The **`handleRemoveItemFromCart`** function. When called...
+        - [X] It should accept a single argument - `productId`
+        - [X] It should decrease the quantity of the item in the `shoppingCart` by `1`, but only if it already exists.
+        - [X] If it doesn't exist, the function should do nothing.
+        - [X] If the new quantity is `0`, it should remove the item from the `shoppingCart`
       - [ ] The **`handleOnCheckoutFormChange`** function. When called...
         - [ ] It should receive two arguments:
           - [ ] `name` - the `name` attribute of the input being updated
@@ -108,7 +108,7 @@ The following specifications were met on the Express backend and the React front
 **Home.jsx**
 
   - [X] Should render JSX that is wrapped by a `div` element with a `className` of `home`
-  - [ ] Should accept **at least** the following props:
+  - [X] Should accept **at least** the following props:
     - `products` - an array of product objects
     - `handleAddItemToCart` - handler function defined in the `App.jsx` component
     - `handleRemoveItemToCart` - handler function defined in the `App.jsx` component
@@ -124,43 +124,43 @@ The following specifications were met on the Express backend and the React front
 **ProductGrid.jsx**
 
   - [X] Should render JSX that is wrapped by a `div` element with a `className` of `product-grid`
-  - [ ] Should accept **at least** the following props:
+  - [X] Should accept **at least** the following props:
     - `products` - an array of product objects
     - `handleAddItemToCart` - handler function defined in the `App.jsx` component
     - `handleRemoveItemToCart` - handler function defined in the `App.jsx` component
-  - [ ] Should iterate over its `products` prop, rendering a `ProductCard` component for each one. Set the `showDescription` prop to `false` for all of the `ProductCard` components rendered in the `ProductGrid` component.
+  - [X] Should iterate over its `products` prop, rendering a `ProductCard` component for each one. Set the `showDescription` prop to `false` for all of the `ProductCard` components rendered in the `ProductGrid` component.
 
 **ProductDetail.jsx**
 
-  - [ ] Should render JSX that is wrapped by a `div` element with a `className` of `product-detail`
-  - [ ] Should accept **at least** the following props:
+  - [X] Should render JSX that is wrapped by a `div` element with a `className` of `product-detail`
+  - [X] Should accept **at least** the following props:
     - `handleAddItemToCart` - handler function defined in the `App.jsx` component
     - `handleRemoveItemToCart` - handler function defined in the `App.jsx` component
-  - [ ] Should define **at least** a `product` state variable and updater
-  - [ ] It should leverage the `useParams` hook from `react-router-dom` to extract the `productId` param from the url.
-  - [ ] When the component is mounted to the screen...
+  - [X] Should define **at least** a `product` state variable and updater
+  - [X] It should leverage the `useParams` hook from `react-router-dom` to extract the `productId` param from the url.
+  - [X] When the component is mounted to the screen...
     - [ ] It should make a `GET` request to the `/store/:productId` endpoint with the `axios.get` method.
     - [ ] The `:productId` part of the request should be replaced with the `productId` pulled from the url.
-    - [ ] When the initial request is loading, it should render an `h1` element with the `className` of `loading` and contain the text `"Loading..."`
+    - [X] When the initial request is loading, it should render an `h1` element with the `className` of `loading` and contain the text `"Loading..."`
     - [ ] It should store the `product` received by the request in state and then render the `ProductView` component.
     - [ ] If no `product` is found with that `id`, it should render the `NotFound` component
 
 **ProductView.jsx**
 
-  - [ ] Should render JSX that is wrapped by a `div` element with a `className` of `product-view`
-  - [ ] Should accept **at least** the following props:
+  - [X] Should render JSX that is wrapped by a `div` element with a `className` of `product-view`
+  - [X] Should accept **at least** the following props:
     - `product` - the `product` object returned by the API request
     - `productId` - the id of the product extracted from the url
     - `quantity` - the quantity for this product found in the `shoppingCart`
     - `handleAddItemToCart` - handler function
     - `handleRemoveItemToCart` - handler function
-  - [ ] It should display an `h1` element with the `className` of `product-id` that contains the text: `Product #` followed by the `productId` prop
-  - [ ] It should render a `ProductCard` component and pass it the props it needs. It should also set the `showDescription` prop to `true` for this product card.
+  - [X] It should display an `h1` element with the `className` of `product-id` that contains the text: `Product #` followed by the `productId` prop
+  - [X] It should render a `ProductCard` component and pass it the props it needs. It should also set the `showDescription` prop to `true` for this product card.
 
 **ProductCard.jsx**
 
   - [X] Should render JSX that is wrapped by a `div` element with a `className` of `product-card`
-  - [ ] Should accept **at least** the following props:
+  - [X] Should accept **at least** the following props:
     - `product` - a product object
     - `productId` - a `number` representing the `id` of the product
     - `quantity` - the quantity for this product found in the `shoppingCart`
@@ -169,16 +169,16 @@ The following specifications were met on the Express backend and the React front
     - `showDescription` - boolean
   - [X] Should render the `name` of the product inside an element with the `className` of `product-name`
   - [X] Should render the `price` of the product inside an element with the `className` of `product-price`. The price should formatted so that it starts with a `$`, and has **at least one** integer digit, along with **exactly two** decimal digits. Examples - `$22.99`, `$860.20`, and `$0.50`
-  - [ ] If the `showDescription` prop is set to `true`, it should render the `description` of the product inside an element with the `className` of `product-description`.
+  - [X] If the `showDescription` prop is set to `true`, it should render the `description` of the product inside an element with the `className` of `product-description`.
   - [X] Should render an `img` element for the product:
     - [X] The `img` element should have a `src` attribute to set to the `image` property of the `product` prop.
-    - [ ] The `img` element should be wrapped in a `Link` component from `react-router-dom`.
-      - [ ] The `Link` element should have a `to` prop so that when the `img` element is clicked on, it should navigate to the product detail route for that product using its `id` attribute. For example, a product with an `id` of `4` should create a `Link` with its `to` prop set to `/products/4`.
-      - [ ] The `Link` that wraps the `img` element should be nested somewhere inside an element with the `className` of `media`.
-  - [ ] Should render two `buttons` elements...
-    - [ ] One button with a `className` of `add`. When clicked, it should call the `handleAddItemToCart` function with the `id` of the `product` as its only argument.
-    - [ ] One button with a `className` of `remove`. When clicked, it should call the `handleRemoveItemFromCart` function with the `id` of the `product` as its only argument.
-  - [ ] Should display the current quantity of items that the user has selected in their shopping cart. The quantity should be rendered inside an element with the `className` of `product-quantity`. If none of that particular item have been added to the shopping cart, it should render nothing there.
+    - [X] The `img` element should be wrapped in a `Link` component from `react-router-dom`.
+      - [X] The `Link` element should have a `to` prop so that when the `img` element is clicked on, it should navigate to the product detail route for that product using its `id` attribute. For example, a product with an `id` of `4` should create a `Link` with its `to` prop set to `/products/4`.
+      - [X] The `Link` that wraps the `img` element should be nested somewhere inside an element with the `className` of `media`.
+  - [X] Should render two `buttons` elements...
+    - [X] One button with a `className` of `add`. When clicked, it should call the `handleAddItemToCart` function with the `id` of the `product` as its only argument.
+    - [X] One button with a `className` of `remove`. When clicked, it should call the `handleRemoveItemFromCart` function with the `id` of the `product` as its only argument.
+  - [X] Should display the current quantity of items that the user has selected in their shopping cart. The quantity should be rendered inside an element with the `className` of `product-quantity`. If none of that particular item have been added to the shopping cart, it should render nothing there.
 
 **Sidebar.jsx**
 
