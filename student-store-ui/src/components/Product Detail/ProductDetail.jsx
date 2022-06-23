@@ -16,6 +16,8 @@ export default function ProductDetail(props) {
 
   const productProp = props.products.filter(p => p.id == productId);
 
+  const [product, setProduct] = React.useState(null);
+
   console.log("q", quantity);
   console.log("p", props.products);
 

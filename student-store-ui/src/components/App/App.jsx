@@ -17,7 +17,7 @@ export default function App() {
   const [shoppingCart, setShoppingCart] = React.useState([]); // store state for the active user's shopping cart (items they want to purchase and the quantity of each item)
   const [checkoutForm, setCheckoutForm] = React.useState(null); // user's information that will be sent to the API when they checkout
   const [searchText, setSearchText] = React.useState(""); // text being typed into the search bar
-
+  let [showDescription, setShowDescription] = React.useState(false); // boolean that tells whether a product's description is visible
 
   React.useEffect(() => {
     getProducts();
@@ -137,14 +137,14 @@ export default function App() {
 
   
 
-  let [showDescription, setShowDescription] = React.useState(false); // boolean that tells whether a product's description is visible
+
 
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Routes>
-            <Route path="/" element={<><Navbar /><Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/><Sidebar /></>}/>
+            <Route path="/" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen}/><Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/></>}/>
 
             <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} isFetching={isFetching} setIsFetching={setIsFetching} error={error} setError={setError} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription}/><Sidebar /></>}/>
 
