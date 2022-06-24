@@ -91,8 +91,6 @@ export default function App() {
         console.log("new state");
         const newState = shoppingCart.map((item) => {
         if (item.itemId == productId) {
-          oldQuantity=item.quantity;
-          console.log("old quantity", item.quantity);
           return {...item, quantity:++item.quantity};
         }
         return item;

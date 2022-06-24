@@ -145,19 +145,5 @@
       "price": 999.99
     }
   ],
-  "purchases": [
-    {
-      "id": 1,
-      "name": "Bob",
-      "email": "Bob@gmail.com",
-      "order": [
-        {
-          "itemId": 2,
-          "quantity": 2
-        }
-      ],
-      "total": 3.26,
-      "createdAt": "2022-06-23T22:54:52.422Z"
-    }
-  ]
+  "purchases": []
 }
