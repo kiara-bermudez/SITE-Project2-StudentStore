@@ -8,10 +8,11 @@
     background-color: #2c4047;
     opacity: 0.9;
     overflow-x: hidden;
+    display: flex;
 }
 
 .sidebar-open {
-    width: 250px;
+    width: 550px;
 }
 
 .sidebar-close {

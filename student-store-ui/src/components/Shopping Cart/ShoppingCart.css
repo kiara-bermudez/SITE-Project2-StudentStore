@@ -1,0 +1,25 @@
+.shopping-cart {
+    display: flex;
+    color: white;
+    flex-direction: column;
+}
+
+.shopping-cart h3 {
+    text-align: center;
+}
+
+.shopping-cart-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.shopping-cart-table table{
+    width: 100%;
+}
+
+.headers-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}

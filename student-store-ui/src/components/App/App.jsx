@@ -19,6 +19,8 @@ export default function App() {
   const [searchText, setSearchText] = React.useState(""); // text being typed into the search bar
   let [showDescription, setShowDescription] = React.useState(false); // boolean that tells whether a product's description is visible
 
+  const LOCAL_PATH = `http://localhost:3001/store`;
+
   React.useEffect(() => {
     getProducts();
     setIsFetching(false);
@@ -28,7 +30,7 @@ export default function App() {
   function getProducts() {
     // Make Get request to API
     setIsFetching(true);
-    axios.get("https://codepath-store-api.herokuapp.com/store")
+    axios.get(LOCAL_PATH)
     .then(function (response) {
       const productData = response.data.products;
       setProducts(productData);
@@ -41,7 +43,7 @@ export default function App() {
 
   function getSearchedItems(text) {
     setIsFetching(true);
-    axios.get("https://codepath-store-api.herokuapp.com/store")
+    axios.get(LOCAL_PATH)
     .then(function (response) {
       let productData = response.data.products;
       productData = productData.filter(product => product.name.includes(text));
@@ -56,7 +58,7 @@ export default function App() {
 
   function getCategoryItem(category) {
     setIsFetching(true);
-    axios.get("https://codepath-store-api.herokuapp.com/store")
+    axios.get(LOCAL_PATH)
     .then(function (response) {
       let productData = response.data.products;
       productData = productData.filter(product => product.category == category);
@@ -144,11 +146,11 @@ export default function App() {
       <BrowserRouter>
         <main>
           <Routes>
-            <Route path="/" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen}/><Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/></>}/>
+            <Route path="/" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart}/><Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/></>}/>
 
-            <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} isFetching={isFetching} setIsFetching={setIsFetching} error={error} setError={setError} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription}/><Sidebar /></>}/>
+            <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription} localPath={LOCAL_PATH}/><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart}/></>}/>
 
-            <Route path="*" element={<><Navbar /><Sidebar /><NotFound /></>}/>
+            <Route path="*" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart}/><NotFound /></>}/>
           </Routes>
           
           

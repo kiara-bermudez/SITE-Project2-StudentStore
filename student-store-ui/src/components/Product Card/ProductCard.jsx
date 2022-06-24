@@ -9,7 +9,7 @@ export default function ProductCard(props) {
     <div className="product-card">
         {/* Should render an img element for the product: */}
         <div className="media">
-          <Link to={'/products/' + props.product.id}>
+          <Link to={`/products/${props.product.id}`}>
             <img src={props.product.image} alt={props.product.name} onClick={props.onClick} />
           </Link>
         </div>

@@ -9,7 +9,7 @@ export default function ProductView(props) {
     <div className="product-view">
         <h1 className="product-id"> Product #{props.productId}</h1>
         {/* It should render a ProductCard component and pass it the props it needs. It should also set the showDescription prop to true for this product card. */}
-        <ProductCard product={props.product[0]} productId={props.productId} handleAddItemToCart={props.handleAddItemToCart} handleRemoveItemFromCart={props.handleRemoveItemFromCart} quantity={props.quantity} showDescription={true}/>
+        <ProductCard product={props.product} productId={props.productId} handleAddItemToCart={props.handleAddItemToCart} handleRemoveItemFromCart={props.handleRemoveItemFromCart} quantity={props.quantity} showDescription={true}/>
     </div>
   )
 }
