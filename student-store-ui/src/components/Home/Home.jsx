@@ -14,7 +14,7 @@ export default function Home(props) {
     <div className="home">
       <Hero />
       <Search searchText={props.searchText} setSearchText={props.setSearchText} getProducts={props.getProducts} getSearchedItems={props.getSearchedItems} getCategoryItem={props.getCategoryItem}/>
-      <ProductGrid products={props.products} handleAddItemToCart={props.handleAddItemToCart} handleRemoveItemFromCart={props.handleRemoveItemFromCart} shoppingCart={props.shoppingCart} onClick={props.handleOnClickCard}/>
+      <ProductGrid products={props.products} handleAddItemToCart={props.handleAddItemToCart} handleRemoveItemFromCart={props.handleRemoveItemFromCart} shoppingCart={props.shoppingCart} onClick={props.handleOnClickCard} searchText={props.searchText}/>
       <About />
       <ContactUs />
       <Footer />

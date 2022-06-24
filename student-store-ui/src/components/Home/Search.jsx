@@ -8,7 +8,7 @@ export default function  Search(props) {
     const handleOnSearchTextChange = (event) => {
         props.setSearchText(event.target.value);
         console.log("search text", props.searchText);
-        props.getSearchedItems(props.searchText);
+        //props.getSearchedItems(props.searchText);
     }
 
     const handleOnClickCategory = (event) => {

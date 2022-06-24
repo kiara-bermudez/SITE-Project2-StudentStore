@@ -19,6 +19,7 @@ export default function App() {
   const [searchText, setSearchText] = React.useState(""); // text being typed into the search bar
   const [orderSent, setOrderSent] = React.useState(false);
   let [showDescription, setShowDescription] = React.useState(false); // boolean that tells whether a product's description is visible
+  const [receipt, setReceipt] = React.useState({});
 
   const LOCAL_PATH = `http://localhost:3001/store`;
 
@@ -154,6 +155,8 @@ export default function App() {
     axios.post(`${LOCAL_PATH}`, {user:checkoutForm, shoppingCart:shoppingCart})
     .then(function (response) {
       console.log(response);
+      const receiptData = response.data.purchase.receipt;
+      setReceipt(receiptData);
       setCheckoutForm({name:"", email:""});
       setShoppingCart([]);
       setError(null);
@@ -172,12 +175,12 @@ export default function App() {
         <main>
           <Routes>
             {/*Note: There is a sidebar in each route, so all sidebars need same props */}
-            <Route path="/" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent}/>
+            <Route path="/" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent} receipt={receipt}/>
             <Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/></>}/>
 
-            <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription} localPath={LOCAL_PATH}/><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent}/></>}/>
+            <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription} localPath={LOCAL_PATH}/><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent} receipt={receipt}/></>}/>
 
-            <Route path="*" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent}/><NotFound /></>}/>
+            <Route path="*" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent} receipt={receipt}/><NotFound /></>}/>
           </Routes>
           
           

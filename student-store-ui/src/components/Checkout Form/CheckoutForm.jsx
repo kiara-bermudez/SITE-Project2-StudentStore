@@ -19,7 +19,20 @@ export default function CheckoutForm(props) {
 
         <div className="checkout-info">
           <h3>Checkout Info</h3>
-          {props.orderSent? <p className="success">Success!</p>
+          {props.orderSent? 
+          <>
+            <p className="success">Success!</p>
+            <p className="receipt-line" id="receipt-first-line">{props.receipt.lines[0]}</p>
+            <ul className="receipt">
+              {props.receipt.lines.map((line, idx) => {
+                return (
+                idx===0?
+                ""
+                :<li className="receipt-line" key={idx}>{line}</li>)
+              })}
+            </ul>
+            
+          </>
           :<p>Add items to your shopping cart, fill out the payment info, and click Checkout to send your order!</p>
           } 
         </div>

@@ -17,3 +17,12 @@
     text-align: center;
 }
 
+.checkout-info p {
+    margin: 0;
+}
+
+#receipt-first-line {
+    text-align: left;
+    padding-top: 15px;
+}
+

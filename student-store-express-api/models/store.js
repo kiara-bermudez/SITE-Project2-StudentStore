@@ -23,7 +23,7 @@ class Store {
         // Create a new purchase order
 
         // Check if shoppingCart and user fields are provided
-        if(!shoppingCart) {
+        if(shoppingCart.length === 0) {
             throw new BadRequestError("ShoppingCart is required in purchase order");
         } else if (!user) {
             throw new BadRequestError("User is required in purchase order")
@@ -33,9 +33,12 @@ class Store {
         const requiredCartFields = ["itemId", "quantity"];
         const requiredUserFields = ["name", "email"];
         let totalCost = 0;
+        let subTotal = 0;
         let itemIdSet = new Set();        
         let itemIdArray = [];
-
+        let receiptLines = ["Showing receipt for " + user.name + " available at " + user.email + ":"]
+        let currLine = "";
+        let productRows = [];
 
         shoppingCart.forEach( async(item) => {
             requiredCartFields.forEach((field) => {
@@ -45,12 +48,18 @@ class Store {
             })
             // Get the item's price and add it and tax to total cost
             const itemDetails = await Store.fetchProductById(item.itemId);
+            subTotal += itemDetails.price * item.quantity;
             const tax = (itemDetails.price * item.quantity * .0875);
             totalCost += ((itemDetails.price * item.quantity)+tax);
 
             // Push item id to array
             itemIdSet.add(item.itemId);
             itemIdArray.push(item.itemId);
+
+            currLine = item.quantity + " total " + itemDetails.name + " purchased at a cost of $" + Number.parseFloat(itemDetails.price).toFixed(2) + " for a total cost of $" + (itemDetails.price * item.quantity).toFixed(2);
+            receiptLines.push(currLine); 
+
+            productRows.push(itemDetails);
         })
 
         requiredUserFields.forEach((field) => {
@@ -69,8 +78,14 @@ class Store {
         if (hasDuplicate) {
             throw new BadRequestError("There should not be duplicate items in Shopping Cart");
         }
+
+        let subtotalLine = "Before taxes, the subtotal was $" + subTotal.toFixed(2);
+        let totalLine = "After taxes and fees were applied, the total comes out to $" + Math.round((totalCost + Number.EPSILON) * 100) / 100;
+        receiptLines.push(subtotalLine);
+        receiptLines.push(totalLine);
+        const receipt = {userInfo:user, lines:receiptLines, productRows}
         
-        const newPurchaseOrder = {id: purchaseId, name: user.name, email: user.email, order: shoppingCart, total: Math.round((totalCost + Number.EPSILON) * 100) / 100, createdAt: date};
+        const newPurchaseOrder = {id: purchaseId, name: user.name, email: user.email, order: shoppingCart, total: Math.round((totalCost + Number.EPSILON) * 100) / 100, createdAt: date, receipt};
 
         storage.get("purchases").push(newPurchaseOrder).write();
 
