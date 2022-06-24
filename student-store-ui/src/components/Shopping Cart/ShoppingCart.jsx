@@ -15,6 +15,8 @@ export default function ShoppingCart(props) {
   return (
     <div className="shopping-cart">
       <h3>Shopping Cart</h3>
+      {props.shoppingCart.length!==0?
+      <>
         <table className="shopping-cart-table">
           <tbody className="shopping-cart-table">
             <tr className="headers-row">
@@ -53,6 +55,9 @@ export default function ShoppingCart(props) {
               </tr>
           </tbody>
         </table> 
+        </>
+      : <p className="notification">No items added to cart yet. Start shopping now!</p>
+    }
     </div>
   )
 }

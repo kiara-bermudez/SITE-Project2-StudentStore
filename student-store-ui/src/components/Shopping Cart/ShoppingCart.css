@@ -73,3 +73,7 @@ th, td {
 .payment-row-value {
     padding-right: 10px;
 }
+
+.notification {
+    text-align: center;
+}

@@ -54,7 +54,7 @@ class Store {
         })
 
         requiredUserFields.forEach((field) => {
-            if(!user[field] && item[field] !== 0) {
+            if(!user[field] && user[field] !== 0) {
                 throw new BadRequestError(`User Field: "${field}" is required`);
             }
         })

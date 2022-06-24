@@ -1,6 +1,6 @@
 const express = require("express")
 const Store = require("../models/store")
-const {NotFoundError} = require("../utils/errors")
+const {NotFoundError, BadRequestError} = require("../utils/errors")
 const router = express.Router()
 
 
@@ -30,6 +30,7 @@ router.get("/:productId", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
     try {
+
         const shoppingCart = req.body.shoppingCart;
         const user = req.body.user;
         const newPurchaseOrder = await Store.createPurchaseOrder(shoppingCart, user);

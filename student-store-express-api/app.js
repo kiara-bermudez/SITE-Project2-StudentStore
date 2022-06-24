@@ -18,4 +18,16 @@ app.get("/",  (req, res, next) => {
     res.status(200).json({ping: "pong"})
 })
 
+
+
+/* Generic error handler - anything that is unhandled will be handled here */
+app.use((error, req, res, next) => {
+    const status = error.status || 500
+    const message = error.message
+  
+    return res.status(status).json({
+      error: { message, status },
+    })
+  })
+
 module.exports = app;

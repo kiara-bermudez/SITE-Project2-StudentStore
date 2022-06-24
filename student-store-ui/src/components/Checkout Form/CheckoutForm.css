@@ -1,0 +1,19 @@
+.checkout-form {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.checkout-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.checkout-info h3, .checkout-info p {
+    text-align: center;
+}
+

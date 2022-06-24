@@ -15,8 +15,9 @@ export default function App() {
   const [error, setError] = React.useState(null); // variable used to display a message when something goes wrong with the API requests
   const [isOpen, setIsOpen] = React.useState(false); // boolean value representing whether or not the Sidebar.jsx is in the open or closed state.
   const [shoppingCart, setShoppingCart] = React.useState([]); // store state for the active user's shopping cart (items they want to purchase and the quantity of each item)
-  const [checkoutForm, setCheckoutForm] = React.useState(null); // user's information that will be sent to the API when they checkout
+  const [checkoutForm, setCheckoutForm] = React.useState({name:"", email:""}); // user's information that will be sent to the API when they checkout
   const [searchText, setSearchText] = React.useState(""); // text being typed into the search bar
+  const [orderSent, setOrderSent] = React.useState(false);
   let [showDescription, setShowDescription] = React.useState(false); // boolean that tells whether a product's description is visible
 
   const LOCAL_PATH = `http://localhost:3001/store`;
@@ -135,20 +136,48 @@ export default function App() {
     }
   }
 
-  
+  function handleOnCheckoutFormChange(name, value) {
+    console.log('checkout form called');
 
+    if (name === "email") {
+      checkoutForm.email = value;
+    } else {
+      checkoutForm.name = value;
+    }
 
+    setCheckoutForm({...checkoutForm});
+    
+  }
+
+  const handleOnSubmitCheckoutForm = async () => {
+    console.log("submit called")
+    axios.post(`${LOCAL_PATH}`, {user:checkoutForm, shoppingCart:shoppingCart})
+    .then(function (response) {
+      console.log(response);
+      setCheckoutForm({name:"", email:""});
+      setShoppingCart([]);
+      setError(null);
+      setOrderSent(true);
+    })
+    .catch(function (error) {
+      const errorData = error.response.data.error.message;
+      setError(errorData);
+    })
+
+  }
 
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Routes>
-            <Route path="/" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart}/><Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/></>}/>
+            {/*Note: There is a sidebar in each route, so all sidebars need same props */}
+            <Route path="/" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent}/>
+            <Home products={products} handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} shoppingCart={shoppingCart} searchText={searchText} setSearchText={setSearchText} getSearchedItems={getSearchedItems} getCategoryItem={getCategoryItem} getProducts={getProducts} showDescription={showDescription} setShowDescription={setShowDescription}/></>}/>
 
-            <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription} localPath={LOCAL_PATH}/><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart}/></>}/>
+            <Route path="/products/:productId" element={<><Navbar /><ProductDetail handleAddItemToCart={handleAddItemToCart} handleRemoveItemFromCart={handleRemoveItemFromCart} products={products} shoppingCart={shoppingCart} showDescription={showDescription} setShowDescription={setShowDescription} localPath={LOCAL_PATH}/><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent}/></>}/>
 
-            <Route path="*" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart}/><NotFound /></>}/>
+            <Route path="*" element={<><Navbar /><Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} products={products} shoppingCart={shoppingCart} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm} error={error} setError={setError} orderSent={orderSent}/><NotFound /></>}/>
           </Routes>
           
           

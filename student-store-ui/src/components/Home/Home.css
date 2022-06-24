@@ -183,7 +183,7 @@
 
 
 /* Source for css for search button: https://www.w3schools.com/howto/howto_css_animated_search.asp*/
-input[type=text] {
+.search-bar input[type=text] {
   width: 200px;
   box-sizing: border-box;
   border: 2px solid #ccc;
@@ -198,7 +198,7 @@ input[type=text] {
   transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+.search-bar input[type=text]:focus {
   width: 100%;
 }
 
