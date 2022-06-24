@@ -5,8 +5,11 @@
 Selling merchandise in the modern era requires digital solutions. For this project, you'll be tasked with designing and constructing an online student store for the College of Codepath. The application entails a frontend user interface for potential customers to peruse the goods, and a backend API to handle data management. The API will be built with Node and Express and the UI will be built with React.
 
 // Include your gif here
+Week 2 gif - Frontend
 ![](Project2-demo3.gif)
 
+Week 3 gif - Full project (Bankend)
+![](Project3-demo.gif)
 ### Application Features
 
 #### Core Features
@@ -26,7 +29,7 @@ Selling merchandise in the modern era requires digital solutions. For this proje
 
 - [ ] User can click in the top navigation bar to scroll to the relevant section.
 - [ ] User sees a "not found" display when searching for a nonexistent product.
-- [ ] Create an endpoint for fetching all orders in the database, and an endpoint for serving an individual order based on its id.
+- [X] Create an endpoint for fetching all orders in the database, and an endpoint for serving an individual order based on its id.
 - [ ] Build a page in the UI that displays the list of all past orders and lets the user click on any individual order to take them to a more detailed page of the transaction.
 - [ ] Allow users to use an input to filter orders by the email of the person who placed the order.
 
@@ -279,3 +282,20 @@ The following specifications were met on the Express backend and the React front
         - **optional**:
           - [X] `receipt` - text describing the order (what might go on a receipt)
       - [X] It should then send a JSON response back to the client with the new purchase like so: `{ "purchase": purchase }`. The response should have a `201` status code for a resource created action.
+
+Reflection
+Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
+The labs are the reason that I was able to fully complete this project! Week 2 labs taught me how to use React (states, props, components) and have dynamic looking website that allowed users to edit it. Week 3 labs taught me how to create routes, get data from a json and fully connect it to the frontend, and how to handle errors. During Week 2 I didn't really understand what I was doing with routes or api call, but once I did the labs in Week 3, I was able to go back and fix my code. I also struggled with the css at times because there were a lot of components on the page that I had to format so they could all fit together.
+
+If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
+Currently, I would want to add more css to fix the sidebar and product details page. I did not have time to pretty up my website fully so that would be first. I would also have liked to complete the stretch features as well as gotten more working links on the page.
+
+Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
+My project demo went well, I showed all of the features that I wanted to. I really liked how some people didn't copy the exact format of the webpage, so I would like to try to add my own personal design and style ideas in the next project.
+
+Open-source libraries used
+Add any links to open-source libraries used in your project.
+
+Shout out
+Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shout out to my pod mates Kevin, Likashmi, Maurice and Robert for working with me and I think we helped each other pretty well!

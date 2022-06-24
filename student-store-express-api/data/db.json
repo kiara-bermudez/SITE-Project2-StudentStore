@@ -893,6 +893,134 @@
           }
         ]
       }
+    },
+    {
+      "id": 25,
+      "name": "Dave",
+      "email": "Dave@codepath.org",
+      "order": [
+        {
+          "itemId": 2,
+          "quantity": 2
+        },
+        {
+          "itemId": 7,
+          "quantity": 1
+        },
+        {
+          "itemId": 10,
+          "quantity": 1
+        }
+      ],
+      "total": 46.74,
+      "createdAt": "2022-06-24T21:35:47.743Z",
+      "receipt": {
+        "userInfo": {
+          "name": "Dave",
+          "email": "Dave@codepath.org"
+        },
+        "lines": [
+          "Showing receipt for Dave available at Dave@codepath.org:",
+          "2 total Flamin Hot Cheetos purchased at a cost of $1.50 for a total cost of $3.00",
+          "1 total Striped Socks purchased at a cost of $4.99 for a total cost of $4.99",
+          "1 total Alpaca Wool Scarf purchased at a cost of $34.99 for a total cost of $34.99",
+          "Before taxes, the subtotal was $42.98",
+          "After taxes and fees were applied, the total comes out to $46.74"
+        ],
+        "productRows": [
+          {
+            "id": 2,
+            "name": "Flamin Hot Cheetos",
+            "category": "food",
+            "image": "https://static.openfoodfacts.org/images/products/896/400/009/0879/front_en.14.full.jpg",
+            "source": "https://world.openfoodfacts.org/cgi/product_image.pl?code=8964000090879&id=front_en",
+            "description": "No one knows what's in the powder that covers these snacks, but wow is it amazing!",
+            "price": 1.5
+          },
+          {
+            "id": 7,
+            "name": "Striped Socks",
+            "category": "clothing",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Bulk_tube_socks.png",
+            "source": "https://commons.wikimedia.org/wiki/File:Bulk_tube_socks.png",
+            "description": "Because the dryer ate most of your socks and it never hurts to have another clean pair.",
+            "price": 4.99
+          },
+          {
+            "id": 10,
+            "name": "Alpaca Wool Scarf",
+            "category": "clothing",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Alpaca_wool_scarf.JPG/800px-Alpaca_wool_scarf.JPG",
+            "source": "https://commons.wikimedia.org/wiki/File:Alpaca_wool_scarf.JPG",
+            "description": "Legends say that the Alpaca knitted this scarf from its own fur.",
+            "price": 34.99
+          }
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "name": "DAve",
+      "email": "Dave@codepath.org",
+      "order": [
+        {
+          "itemId": 2,
+          "quantity": 1
+        },
+        {
+          "itemId": 8,
+          "quantity": 1
+        },
+        {
+          "itemId": 5,
+          "quantity": 2
+        }
+      ],
+      "total": 39.68,
+      "createdAt": "2022-06-24T21:55:52.488Z",
+      "receipt": {
+        "userInfo": {
+          "name": "DAve",
+          "email": "Dave@codepath.org"
+        },
+        "lines": [
+          "Showing receipt for DAve available at Dave@codepath.org:",
+          "1 total Flamin Hot Cheetos purchased at a cost of $1.50 for a total cost of $1.50",
+          "1 total Knitted Beanie purchased at a cost of $19.99 for a total cost of $19.99",
+          "2 total Fruit Medley purchased at a cost of $7.50 for a total cost of $15.00",
+          "Before taxes, the subtotal was $36.49",
+          "After taxes and fees were applied, the total comes out to $39.68"
+        ],
+        "productRows": [
+          {
+            "id": 2,
+            "name": "Flamin Hot Cheetos",
+            "category": "food",
+            "image": "https://static.openfoodfacts.org/images/products/896/400/009/0879/front_en.14.full.jpg",
+            "source": "https://world.openfoodfacts.org/cgi/product_image.pl?code=8964000090879&id=front_en",
+            "description": "No one knows what's in the powder that covers these snacks, but wow is it amazing!",
+            "price": 1.5
+          },
+          {
+            "id": 8,
+            "name": "Knitted Beanie",
+            "category": "clothing",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Blue_knit-cap_beanie_by_RobertLender.jpeg/640px-Blue_knit-cap_beanie_by_RobertLender.jpeg",
+            "source": "https://commons.wikimedia.org/wiki/File:Blue_knit-cap_beanie_by_RobertLender.jpeg",
+            "description": "Keeps your head absurdly warm while the rest of your body freezes.",
+            "price": 19.99
+          },
+          {
+            "id": 5,
+            "name": "Fruit Medley",
+            "category": "food",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Fruits.png/640px-Fruits.png",
+            "source": "https://commons.wikimedia.org/wiki/File:Fruits.png",
+            "description": "More fruit than you know what to do with!",
+            "price": 7.5
+          }
+        ]
+      }
     }
   ]
 }
